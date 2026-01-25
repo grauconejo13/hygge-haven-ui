@@ -1,0 +1,55 @@
+const products = [{
+        id: 1,
+        name: "Ullpläd",
+        price: "$48",
+        image: "https://assets.codepen.io/11990995/wool_blanket.jpg",
+    },
+    {
+        id: 2,
+        name: "Handgjutet Ljus",
+        price: "$18",
+        image: "https://assets.codepen.io/11990995/candles.jpg",
+    },
+    {
+        id: 3,
+        name: "Linneprydnadskudde",
+        price: "$36",
+        image: "https://assets.codepen.io/11990995/linen-throw-pillow.jpg",
+    },
+    {
+        id: 4,
+        name: "Trätebricka",
+        price: "$29",
+        image: "https://assets.codepen.io/11990995/wooden_tray.jpg",
+    },
+    {
+        id: 5,
+        name: "Mjuka Sovstrumpor",
+        price: "$14",
+        image: "https://assets.codepen.io/11990995/socks.jpg",
+    },
+    {
+        id: 6,
+        name: "Hyggebok",
+        price: "$25",
+        image: "https://assets.codepen.io/11990995/Hygge-book.jpg",
+    },
+    {
+        id: 7,
+        name: "Fårskinnsfäll",
+        price: "$14",
+        image: "https://assets.codepen.io/11990995/fluffy_rug.png",
+    },
+    {
+        id: 8,
+        name: "Keramisk Tekopp",
+        price: "$22",
+        image: "https://assets.codepen.io/11990995/hygge_mugs.jpg",
+    },
+    {
+        id: 9,
+        name: "Vintermössa",
+        price: "$19",
+        image: "https://assets.codepen.io/11990995/winter-cap.jpg",
+    },
+];

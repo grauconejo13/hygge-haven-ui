@@ -1,0 +1,10 @@
+
+
+.font-heading {
+  font-family: "Cinzel", serif;
+  letter-spacing: 0.04em;
+}
+
+.font-body {
+  font-family: "Quicksand", ui-sans-serif, system-ui;
+}
