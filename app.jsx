@@ -60,28 +60,32 @@ function Hero() {
 /* ---------- PRODUCTS ---------- */
 function ProductGrid() {
   return (
-    <section className="pb-28">
-      <h3 className="text-xl text-[#f3efe6] mb-8 tracking-wide">Cozy Goods</h3>
+    <section className="pb-28" aria-labelledby="cozy-goods-heading">
+      <h3 id="cozy-goods-heading" className="text-xl text-[#f3efe6] mb-8 tracking-wide">
+        Cozy Goods
+      </h3>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
         {products.map((p) => (
-          <div
+          <article
             key={p.id}
-            className="group relative bg-[#2a3441] rounded-xl overflow-hidden shadow-lg hover:-translate-y-1 transition-all duration-300"
+            tabIndex="0"
+            aria-label={`${p.name}, ${p.price}`}
+            className="group relative bg-[#2a3441] rounded-xl overflow-hidden shadow-lg hover:-translate-y-1 focus:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-[#e6c07b] focus:ring-offset-2 focus:ring-offset-[#1f2933] transition-all duration-300"
           >
             <img
               src={p.image}
               alt={p.name}
-              className="w-full h-48 object-cover transition-transform duration-700 group-hover:scale-105"
+              className="w-full h-48 object-cover transition-transform duration-700 group-hover:scale-105 group-focus:scale-105"
             />
 
-            <div className="absolute inset-0 bg-[#1f2933]/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
-              <div className="w-full p-5 text-center transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+            <div className="absolute inset-0 bg-[#1f2933]/70 opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity duration-300 flex items-end">
+              <div className="w-full p-5 text-center transform translate-y-4 group-hover:translate-y-0 group-focus:translate-y-0 transition-transform duration-300">
                 <h4 className="text-[#f3efe6] font-medium mb-1">{p.name}</h4>
                 <p className="text-[#e6c07b] font-semibold">{p.price}</p>
               </div>
             </div>
-          </div>
+          </article>
         ))}
       </div>
     </section>
