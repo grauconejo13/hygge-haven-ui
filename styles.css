@@ -1,5 +1,4 @@
 
-
 .font-heading {
   font-family: "Cinzel", serif;
   letter-spacing: 0.04em;
@@ -7,4 +6,34 @@
 
 .font-body {
   font-family: "Quicksand", ui-sans-serif, system-ui;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .hero-parallax {
+    transform: none !important;
+  }
+
+  .product-card,
+  .product-image,
+  .product-overlay,
+  .product-details {
+    transition-duration: 0.01ms !important;
+  }
+
+  .product-card:hover,
+  .product-card:focus {
+    transform: none !important;
+  }
+
+  .product-image {
+    transform: none !important;
+  }
+
+  .product-details {
+    transform: none !important;
+  }
 }

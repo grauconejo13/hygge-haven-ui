@@ -9,10 +9,10 @@ function Header() {
         <h1 className="text-lg font-semibold tracking-wide text-[#f3efe6]">
           Hygge Haven
         </h1>
-        <nav className="text-sm text-[#b8c1cc] space-x-6">
-          <span className="hover:text-white cursor-pointer">Shop</span>
-          <span className="hover:text-white cursor-pointer">About</span>
-          <span className="hover:text-white cursor-pointer">Contact</span>
+        <nav className="text-sm text-[#b8c1cc] space-x-6" aria-label="Primary">
+          <a href="#shop" className="hover:text-white focus:text-white">Shop</a>
+          <a href="#about" className="hover:text-white focus:text-white">About</a>
+          <a href="#contact" className="hover:text-white focus:text-white">Contact</a>
         </nav>
       </div>
     </header>
@@ -24,15 +24,37 @@ function Hero() {
   const [offset, setOffset] = useState(0);
 
   useEffect(() => {
-    const onScroll = () => setOffset(window.scrollY * 0.25);
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    const updateMotionPreference = () => {
+      if (mediaQuery.matches) {
+        setOffset(0);
+      }
+    };
+
+    const onScroll = () => {
+      if (!mediaQuery.matches) {
+        setOffset(window.scrollY * 0.25);
+      }
+    };
+
+    updateMotionPreference();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    mediaQuery.addEventListener?.("change", updateMotionPreference);
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      mediaQuery.removeEventListener?.("change", updateMotionPreference);
+    };
   }, []);
 
   return (
-    <section className="relative h-[420px] md:h-[520px] rounded-2xl overflow-hidden mb-20">
+    <section
+      id="about"
+      className="relative h-[420px] md:h-[520px] rounded-2xl overflow-hidden mb-20"
+    >
       <div
-        className="absolute inset-0"
+        className="hero-parallax absolute inset-0"
         style={{ transform: `translateY(${offset}px)` }}
       >
         <img
@@ -60,7 +82,7 @@ function Hero() {
 /* ---------- PRODUCTS ---------- */
 function ProductGrid() {
   return (
-    <section className="pb-28" aria-labelledby="cozy-goods-heading">
+    <section id="shop" className="pb-28" aria-labelledby="cozy-goods-heading">
       <h3 id="cozy-goods-heading" className="text-xl text-[#f3efe6] mb-8 tracking-wide">
         Cozy Goods
       </h3>
@@ -71,16 +93,16 @@ function ProductGrid() {
             key={p.id}
             tabIndex="0"
             aria-label={`${p.name}, ${p.price}`}
-            className="group relative bg-[#2a3441] rounded-xl overflow-hidden shadow-lg hover:-translate-y-1 focus:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-[#e6c07b] focus:ring-offset-2 focus:ring-offset-[#1f2933] transition-all duration-300"
+            className="product-card group relative bg-[#2a3441] rounded-xl overflow-hidden shadow-lg hover:-translate-y-1 focus:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-[#e6c07b] focus:ring-offset-2 focus:ring-offset-[#1f2933] transition-all duration-300"
           >
             <img
               src={p.image}
               alt={p.name}
-              className="w-full h-48 object-cover transition-transform duration-700 group-hover:scale-105 group-focus:scale-105"
+              className="product-image w-full h-48 object-cover transition-transform duration-700 group-hover:scale-105 group-focus:scale-105"
             />
 
-            <div className="absolute inset-0 bg-[#1f2933]/70 opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity duration-300 flex items-end">
-              <div className="w-full p-5 text-center transform translate-y-4 group-hover:translate-y-0 group-focus:translate-y-0 transition-transform duration-300">
+            <div className="product-overlay absolute inset-0 bg-[#1f2933]/70 opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity duration-300 flex items-end">
+              <div className="product-details w-full p-5 text-center transform translate-y-4 group-hover:translate-y-0 group-focus:translate-y-0 transition-transform duration-300">
                 <h4 className="text-[#f3efe6] font-medium mb-1">{p.name}</h4>
                 <p className="text-[#e6c07b] font-semibold">{p.price}</p>
               </div>
@@ -95,7 +117,7 @@ function ProductGrid() {
 /* ---------- FOOTER ---------- */
 function Footer() {
   return (
-    <footer className="border-t border-white/10 bg-[#1f2933]">
+    <footer id="contact" className="border-t border-white/10 bg-[#1f2933]">
       <div className="max-w-6xl mx-auto px-6 py-8 text-center text-sm text-[#b8c1cc]">
         © Hygge Haven — cozy by design
       </div>
